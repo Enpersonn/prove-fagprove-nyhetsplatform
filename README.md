@@ -1,8 +1,8 @@
-# blank
+# Prøve fagprøve
 
 blank
 
 ## Attributes
 
-- **Database**: mongodb
-- **Storage Adapter**: localDisk
+- **Database**: postgresql
+- **Storage Adapter**: supabase
