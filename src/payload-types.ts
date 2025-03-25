@@ -146,6 +146,7 @@ export interface AdminAuthOperations {
  */
 export interface User {
   id: number;
+  isAdmin?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -183,6 +184,7 @@ export interface Media {
  */
 export interface Admin {
   id: number;
+  isAdmin?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -302,6 +304,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  isAdmin?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -336,6 +339,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "admin_select".
  */
 export interface AdminSelect<T extends boolean = true> {
+  isAdmin?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

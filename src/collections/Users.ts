@@ -5,6 +5,27 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: "email",
   },
+  access: {
+    read: () => false,
+    update: () => false,
+    delete: () => false,
+    create: () => false,
+  },
+  hooks: {
+    beforeChange: [
+      (data) => ({
+        ...data,
+        isAdmin: false,
+      }),
+    ],
+  },
   auth: true,
-  fields: [],
+  fields: [
+    {
+      name: "isAdmin",
+      type: "checkbox",
+      defaultValue: false,
+      hidden: true,
+    },
+  ],
 };
