@@ -12,8 +12,8 @@ export default function MainLayout({
     <div className="h-full">
       <AdminButton isAdmin={isAdmin} />
       <TopNavigationBar />
-      <div className="h-full flex flex-col gap-20 pt-20">
-        <main className=" h-full">{children}</main>
+      <div className="h-full flex flex-col pt-20">
+        <main className="min-h-[calc(100vh-80px)] h-full">{children}</main>
         <Footer />
       </div>
     </div>
