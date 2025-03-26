@@ -3,7 +3,7 @@ import "./styles.css";
 import { headers as getHeaders } from "next/headers.js";
 import { getPayload } from "payload";
 import config from "@/payload.config";
-import MainLayout from "@/layouts/main-layout";
+import ClientProvider from "@/provider/client-provider";
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -19,7 +19,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <MainLayout isAdmin={isAdmin}>{props.children}</MainLayout>
+        <ClientProvider isAdmin={isAdmin}>{props.children}</ClientProvider>
       </body>
     </html>
   );

@@ -1,4 +1,3 @@
-import type { User, Admin } from "@/payload-types";
 import Link from "next/link";
 
 export default function MainLayout({
