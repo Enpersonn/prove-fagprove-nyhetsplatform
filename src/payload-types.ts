@@ -204,6 +204,21 @@ export interface Article {
   id: number;
   title?: string | null;
   isPremium?: boolean | null;
+  entry?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   slug?: string | null;
   mainImage?: (number | null) | Media;
   content?: {
@@ -357,6 +372,7 @@ export interface AdminSelect<T extends boolean = true> {
 export interface ArticleSelect<T extends boolean = true> {
   title?: T;
   isPremium?: T;
+  entry?: T;
   slug?: T;
   mainImage?: T;
   content?: T;
