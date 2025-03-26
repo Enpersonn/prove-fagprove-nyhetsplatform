@@ -1,5 +1,6 @@
-import Link from "next/link";
-
+import Footer from "@/components/layout/footer";
+import AdminButton from "./admin-button";
+import TopNavigationBar from "./top-navigation-bar";
 export default function MainLayout({
   isAdmin,
   children,
@@ -8,16 +9,13 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      {isAdmin && (
-        <div className="fixed right-32 top-0 hover:bg-foreground/95 z-10 bg-foreground text-background px-2 py-1 ">
-          <Link href="/admin">Admin</Link>
-        </div>
-      )}
-      <nav className=" fixed top-0 left-0 right-0 mx-4 my-2 p-2 flex bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 items-center justify-between border ">
-        <Link href="/">Home</Link>
-      </nav>
-      <div className="mt-16">{children}</div>
+    <div className="h-full">
+      <AdminButton isAdmin={isAdmin} />
+      <TopNavigationBar />
+      <div className="h-full flex flex-col gap-20 pt-20">
+        <main className=" h-full">{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 }

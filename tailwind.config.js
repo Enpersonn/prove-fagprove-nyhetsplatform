@@ -90,6 +90,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    fontFamily: {
+      sans: ["var(--font-kantumruy-pro)"],
+      anton: ["var(--font-anton)"],
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };

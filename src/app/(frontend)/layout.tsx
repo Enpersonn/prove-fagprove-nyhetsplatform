@@ -4,12 +4,18 @@ import { headers as getHeaders } from "next/headers.js";
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import ClientProvider from "@/provider/client-provider";
-import { Kantumruy_Pro } from "next/font/google";
+import { Kantumruy_Pro, Anton } from "next/font/google";
 
 const kantumruyPro = Kantumruy_Pro({
   subsets: ["khmer"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   variable: "--font-kantumruy-pro",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
 });
 
 export const metadata = {
@@ -25,7 +31,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const isAdmin = user?.isAdmin;
   return (
     <html lang="en">
-      <body className={kantumruyPro.className}>
+      <body className={`${kantumruyPro.variable} ${anton.variable} font-sans`}>
         <ClientProvider isAdmin={isAdmin}>{props.children}</ClientProvider>
       </body>
     </html>

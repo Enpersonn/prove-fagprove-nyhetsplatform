@@ -10,6 +10,7 @@ export default async function NewsPage({
 }: {
   params: { slug: string };
 }) {
+  const { slug } = await params;
   const headers = await getHeaders();
   const payloadConfig = await config;
   const payload = await getPayload({ config: payloadConfig });
@@ -21,7 +22,7 @@ export default async function NewsPage({
     collection: "article",
     where: {
       slug: {
-        equals: params.slug,
+        equals: slug,
       },
     },
     limit: 1,

@@ -1,12 +1,12 @@
 "use client";
-import type { Article } from "@/payload-types";
+import type { Article, Media } from "@/payload-types";
 import ContentWrapper from "@/wrapper/content-wrapper";
 import Image from "next/image";
 import Link from "next/link";
 export default function FrontPageView({ articles }: { articles: Article[] }) {
   return (
     <ContentWrapper>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 pb-20">
         {articles.map((article) => (
           <Link
             key={article.id}
@@ -14,17 +14,18 @@ export default function FrontPageView({ articles }: { articles: Article[] }) {
             className=" border hover:underline relative overflow-hidden"
           >
             {article.mainImage && (
-              <Image
-                //@ts-expect-error TODO: Fix this
-                src={article.mainImage.url}
-                //@ts-expect-error TODO: Fix this
-                alt={article.mainImage.alt}
-                width={930}
-                height={620}
-              />
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image
+                  src={(article.mainImage as Media).url ?? ""}
+                  alt={(article.mainImage as Media).alt ?? ""}
+                  width={930}
+                  height={620}
+                  className="object-cover"
+                />
+              </div>
             )}
             {article.isPremium && (
-              <div className="absolute  p-1 px-2  top-1 right-0 bg-background/95 text-sm ">
+              <div className="absolute p-1 px-2 bg-muted font-bold top-1 right-0 text-sm ">
                 Premium Nyhet
               </div>
             )}

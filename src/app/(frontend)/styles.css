@@ -2,18 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Anton";
+  src: url("/fonts/Anton-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kantumruy Pro";
+  src: url("/fonts/KantumruyPro-Regular.ttf") format("truetype");
+}
+
 html {
   font-size: 18px;
   line-height: 32px;
 
   background: rgb(0, 0, 0);
   -webkit-font-smoothing: antialiased;
-}
-
-html,
-body,
-#app {
-  height: 100%;
 }
 
 @layer base {

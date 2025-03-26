@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   const articles = await payload.find({
     collection: "article",
-    limit: 10,
+    limit: 12,
   });
 
   return <FrontPageView articles={articles.docs} />;
