@@ -4,6 +4,13 @@ import { headers as getHeaders } from "next/headers.js";
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import ClientProvider from "@/provider/client-provider";
+import { Kantumruy_Pro } from "next/font/google";
+
+const kantumruyPro = Kantumruy_Pro({
+  subsets: ["khmer"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-kantumruy-pro",
+});
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -18,7 +25,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const isAdmin = user?.isAdmin;
   return (
     <html lang="en">
-      <body>
+      <body className={kantumruyPro.className}>
         <ClientProvider isAdmin={isAdmin}>{props.children}</ClientProvider>
       </body>
     </html>
