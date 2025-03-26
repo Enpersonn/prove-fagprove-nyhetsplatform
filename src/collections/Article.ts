@@ -14,6 +14,11 @@ export const Article: CollectionConfig = {
       type: "checkbox",
     },
     {
+      name: "entry",
+      label: "Ingress",
+      type: "richText",
+    },
+    {
       name: "slug",
       label: "Slug",
       type: "text",
