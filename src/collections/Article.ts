@@ -7,21 +7,25 @@ export const Article: CollectionConfig = {
       name: "title",
       label: "Tittel",
       type: "text",
+      required: true,
     },
     {
       name: "isPremium",
       label: "Premium innhold",
       type: "checkbox",
+      defaultValue: false,
     },
     {
       name: "entry",
       label: "Ingress",
       type: "richText",
+      required: true,
     },
     {
       name: "slug",
       label: "Slug",
       type: "text",
+      required: true,
     },
     {
       name: "mainImage",

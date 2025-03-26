@@ -218,9 +218,9 @@ export interface Admin {
  */
 export interface Article {
   id: number;
-  title?: string | null;
+  title: string;
   isPremium?: boolean | null;
-  entry?: {
+  entry: {
     root: {
       type: string;
       children: {
@@ -234,8 +234,8 @@ export interface Article {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  slug?: string | null;
+  };
+  slug: string;
   mainImage?: (number | null) | Media;
   content?: {
     root: {

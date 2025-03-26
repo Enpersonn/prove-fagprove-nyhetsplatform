@@ -1,14 +1,22 @@
-import { useParams } from "next/navigation";
-import { getPayload } from "payload";
+import ArticleView from "@/views/article-view";
+import { headers as getHeaders } from "next/headers.js";
 import config from "@/payload.config";
-import payloadConfig from "@/payload.config";
+import type { Subscription } from "@/payload-types";
+import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 
 export default async function NewsPage({
   params,
 }: {
   params: { slug: string };
 }) {
+  const headers = await getHeaders();
+  const payloadConfig = await config;
   const payload = await getPayload({ config: payloadConfig });
+  const { user } = await payload.auth({ headers });
+  const hasActiveSubscription = user?.subscriptions?.some(
+    (subscription) => (subscription as Subscription).isActive
+  );
   const article = await payload.find({
     collection: "article",
     where: {
@@ -18,10 +26,18 @@ export default async function NewsPage({
     },
     limit: 1,
   });
-  const articleData = article.docs[0];
-  return (
-    <div>
-      <h1>{articleData.title}</h1>
-    </div>
-  );
+
+  if (!article.docs.length) {
+    notFound();
+  }
+
+  const articleData = {
+    ...article.docs[0],
+    content: article.docs[0].isPremium
+      ? hasActiveSubscription
+        ? article.docs[0].content
+        : null
+      : article.docs[0].content,
+  };
+  return <ArticleView article={articleData} />;
 }
