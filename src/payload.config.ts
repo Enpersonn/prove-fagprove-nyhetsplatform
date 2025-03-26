@@ -12,6 +12,7 @@ import { Media } from "./collections/Media";
 import { Admin } from "./collections/Admin";
 import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { Article } from "./collections/Article";
+import { Subscription } from "./collections/Subscription";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Admin, Article],
+  collections: [Users, Media, Admin, Article, Subscription],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     admin: Admin;
     article: Article;
+    subscription: Subscription;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     admin: AdminSelect<false> | AdminSelect<true>;
     article: ArticleSelect<false> | ArticleSelect<true>;
+    subscription: SubscriptionSelect<false> | SubscriptionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -147,6 +149,7 @@ export interface AdminAuthOperations {
 export interface User {
   id: number;
   isAdmin?: boolean | null;
+  subscriptions?: (number | Subscription)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -157,6 +160,18 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscription".
+ */
+export interface Subscription {
+  id: number;
+  email?: (number | null) | User;
+  isActive?: boolean | null;
+  expiresAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -185,6 +200,7 @@ export interface Media {
 export interface Admin {
   id: number;
   isAdmin?: boolean | null;
+  subscriptions?: (number | Subscription)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -261,6 +277,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'article';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'subscription';
+        value: number | Subscription;
       } | null);
   globalSlug?: string | null;
   user:
@@ -320,6 +340,7 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   isAdmin?: T;
+  subscriptions?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -355,6 +376,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface AdminSelect<T extends boolean = true> {
   isAdmin?: T;
+  subscriptions?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -376,6 +398,17 @@ export interface ArticleSelect<T extends boolean = true> {
   slug?: T;
   mainImage?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscription_select".
+ */
+export interface SubscriptionSelect<T extends boolean = true> {
+  email?: T;
+  isActive?: T;
+  expiresAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,4 +1,3 @@
-import { boolean } from "@payloadcms/db-postgres/drizzle/pg-core";
 import type { CollectionConfig } from "payload";
 
 export const Admin: CollectionConfig = {
@@ -15,10 +14,35 @@ export const Admin: CollectionConfig = {
   },
   hooks: {
     beforeChange: [
-      (data) => ({
-        ...data,
-        isAdmin: true,
-      }),
+      async ({ data, req }) => {
+        const userMatch = await req.payload.find({
+          collection: "users",
+          where: {
+            email: data.email,
+          },
+        });
+        if (userMatch.docs.length === 0) {
+          const newUser = await req.payload.create({
+            collection: "users",
+            data: {
+              email: data.email,
+              isAdmin: true,
+            },
+          });
+
+          return {
+            ...data,
+            subscriptions: newUser.subscriptions || [],
+            isAdmin: true,
+          };
+        }
+        return {
+          ...data,
+          subscriptions:
+            userMatch.docs.length > 0 ? userMatch.docs[0].subscriptions : [],
+          isAdmin: true,
+        };
+      },
     ],
   },
   fields: [
@@ -26,6 +50,13 @@ export const Admin: CollectionConfig = {
       name: "isAdmin",
       type: "checkbox",
       defaultValue: true,
+      hidden: true,
+    },
+    {
+      name: "subscriptions",
+      type: "relationship",
+      relationTo: "subscription",
+      hasMany: true,
       hidden: true,
     },
   ],
