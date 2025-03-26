@@ -30,7 +30,7 @@ export default function FrontPageView({ articles }: { articles: Article[] }) {
               </div>
             )}
             <div className="p-4">
-              <h2 className="text-xl font-bold">{article.title}</h2>
+              <h2 className="text-xl  font-anton">{article.title}</h2>
             </div>
           </Link>
         ))}

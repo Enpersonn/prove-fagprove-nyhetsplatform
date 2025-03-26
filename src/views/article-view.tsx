@@ -8,19 +8,27 @@ export default async function ArticleView({ article }: { article: Article }) {
     <ContentWrapper>
       <div className="relative">
         {article.isPremium && <ContentBlock />}
-
-        <h1 className="text-4xl font-bold">{article.title}</h1>
-        <RichText data={article.entry} />
-        {article.mainImage && (
-          <Image
-            src={(article.mainImage as Media).url ?? ""}
-            alt={(article.mainImage as Media).alt ?? ""}
-            width={930}
-            height={620}
-          />
-        )}
-        {/* @ts-expect-error TODO: Fix this */}
-        <RichText data={article.content} />
+        <div className="flex flex-col gap-16">
+          <header className="flex flex-col gap-8">
+            <h1 className="text-4xl font-anton">{article.title}</h1>
+            <RichText data={article.entry} />
+          </header>
+          {article.mainImage && (
+            <div className="relative aspect-video w-full overflow-hidden">
+              <Image
+                src={(article.mainImage as Media).url ?? ""}
+                alt={(article.mainImage as Media).alt ?? ""}
+                width={930}
+                height={620}
+                className="object-cover"
+              />
+            </div>
+          )}
+          <article>
+            {/* @ts-expect-error TODO: Fix this */}
+            <RichText data={article.content} />
+          </article>
+        </div>
       </div>
     </ContentWrapper>
   );
