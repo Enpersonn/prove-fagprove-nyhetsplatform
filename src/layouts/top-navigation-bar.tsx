@@ -6,7 +6,11 @@ import { useTheme } from "next-themes";
 import { SunIcon } from "lucide-react";
 import { MoonIcon } from "lucide-react";
 
-const TopNavigationBar = () => {
+const TopNavigationBar = ({
+  isAuthorized,
+}: {
+  isAuthorized: boolean | undefined | null;
+}) => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -19,7 +23,11 @@ const TopNavigationBar = () => {
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline">
-                <Link href="/login">Logg inn</Link>
+                {isAuthorized ? (
+                  <Link href="/profile">Min Profil</Link>
+                ) : (
+                  <Link href="/login">Logg inn</Link>
+                )}
               </Button>
               <Button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
