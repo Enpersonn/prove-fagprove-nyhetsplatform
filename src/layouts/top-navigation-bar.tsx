@@ -22,13 +22,6 @@ const TopNavigationBar = ({
               <Link href="/">1984 NEWS</Link>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="outline">
-                {isAuthorized ? (
-                  <Link href="/profile">Min Profil</Link>
-                ) : (
-                  <Link href="/login">Logg inn</Link>
-                )}
-              </Button>
               <Button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 variant="ghost"
@@ -38,6 +31,13 @@ const TopNavigationBar = ({
                   <MoonIcon className="size-4" />
                 ) : (
                   <SunIcon className="size-4" />
+                )}
+              </Button>
+              <Button variant="outline">
+                {isAuthorized ? (
+                  <Link href="/profile">Min Profil</Link>
+                ) : (
+                  <Link href="/login">Logg inn</Link>
                 )}
               </Button>
             </div>
