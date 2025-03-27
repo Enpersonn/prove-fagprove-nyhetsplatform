@@ -19,7 +19,7 @@ const TopNavigationBar = ({
         <ContentWrapper>
           <div className="flex w-full justify-between items-center gap-4">
             <div className="font-anton text-2xl">
-              <Link href="/">1985 NEWS</Link>
+              <Link href="/">1984 NEWS</Link>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline">

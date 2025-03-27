@@ -20,6 +20,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    meta: {
+      title: "1984 NEWS",
+    },
   },
   collections: [Users, Media, Article, Subscription],
   editor: lexicalEditor(),
