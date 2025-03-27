@@ -123,6 +123,9 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  firstName?: string | null;
+  lastName?: string | null;
+  displayName?: string | null;
   isAdmin?: boolean | null;
   subscriptions?: (number | Subscription)[] | null;
   updatedAt: string;
@@ -144,6 +147,8 @@ export interface Subscription {
   id: number;
   email?: (number | null) | User;
   isActive?: boolean | null;
+  activatedAt?: string | null;
+  nextPaymentDate?: string | null;
   expiresAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -281,6 +286,9 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  displayName?: T;
   isAdmin?: T;
   subscriptions?: T;
   updatedAt?: T;
@@ -333,6 +341,8 @@ export interface ArticleSelect<T extends boolean = true> {
 export interface SubscriptionSelect<T extends boolean = true> {
   email?: T;
   isActive?: T;
+  activatedAt?: T;
+  nextPaymentDate?: T;
   expiresAt?: T;
   updatedAt?: T;
   createdAt?: T;

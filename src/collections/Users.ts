@@ -16,7 +16,31 @@ export const Users: CollectionConfig = {
   auth: {
     tokenExpiration: 3 * 24 * 60 * 60, // three days in seconds
   },
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+        if (!data.displayName) {
+          data.displayName = `${data.firstName} ${data.lastName}`;
+        }
+      },
+    ],
+  },
   fields: [
+    {
+      name: "firstName",
+      label: "Fornavn",
+      type: "text",
+    },
+    {
+      name: "lastName",
+      label: "Etternavn",
+      type: "text",
+    },
+    {
+      name: "displayName",
+      label: "Visningsnavn",
+      type: "text",
+    },
     {
       name: "isAdmin",
       type: "checkbox",
