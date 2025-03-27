@@ -10,6 +10,15 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        content: "calc(100vh - 80px)",
+      },
+      minHeight: {
+        content: "calc(100vh - 80px)",
+      },
+      maxHeight: {
+        content: "calc(100vh - 80px)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
