@@ -16,14 +16,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 export const loginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
 });
 
 export default function LoginPage() {
-  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
