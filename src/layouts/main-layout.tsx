@@ -15,7 +15,7 @@ export default function MainLayout({
       <AdminButton isAdmin={isAdmin} />
       <TopNavigationBar isAuthorized={isAuthorized} />
       <div className="h-full flex flex-col pt-20">
-        <main className="min-h-[calc(100vh-80px)] h-full">{children}</main>
+        <main className="min-h-content h-full">{children}</main>
         <Footer />
       </div>
     </div>
