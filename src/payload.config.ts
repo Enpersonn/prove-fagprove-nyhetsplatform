@@ -9,7 +9,6 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
-import { Admin } from "./collections/Admin";
 import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { Article } from "./collections/Article";
 import { Subscription } from "./collections/Subscription";
@@ -18,12 +17,11 @@ const dirname = path.dirname(filename);
 
 export default buildConfig({
   admin: {
-    user: Admin.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Admin, Article, Subscription],
+  collections: [Users, Media, Article, Subscription],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

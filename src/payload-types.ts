@@ -64,13 +64,11 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
-    admin: AdminAuthOperations;
   };
   blocks: {};
   collections: {
     users: User;
     media: Media;
-    admin: Admin;
     article: Article;
     subscription: Subscription;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,7 +79,6 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    admin: AdminSelect<false> | AdminSelect<true>;
     article: ArticleSelect<false> | ArticleSelect<true>;
     subscription: SubscriptionSelect<false> | SubscriptionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -94,37 +91,15 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
-  user:
-    | (User & {
-        collection: 'users';
-      })
-    | (Admin & {
-        collection: 'admin';
-      });
+  user: User & {
+    collection: 'users';
+  };
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
 export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
-  };
-}
-export interface AdminAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -195,25 +170,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin".
- */
-export interface Admin {
-  id: number;
-  isAdmin?: boolean | null;
-  subscriptions?: (number | Subscription)[] | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "article".
  */
 export interface Article {
@@ -271,10 +227,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'admin';
-        value: number | Admin;
-      } | null)
-    | ({
         relationTo: 'article';
         value: number | Article;
       } | null)
@@ -283,15 +235,10 @@ export interface PayloadLockedDocument {
         value: number | Subscription;
       } | null);
   globalSlug?: string | null;
-  user:
-    | {
-        relationTo: 'users';
-        value: number | User;
-      }
-    | {
-        relationTo: 'admin';
-        value: number | Admin;
-      };
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -301,15 +248,10 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user:
-    | {
-        relationTo: 'users';
-        value: number | User;
-      }
-    | {
-        relationTo: 'admin';
-        value: number | Admin;
-      };
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
   key?: string | null;
   value?:
     | {
@@ -369,23 +311,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin_select".
- */
-export interface AdminSelect<T extends boolean = true> {
-  isAdmin?: T;
-  subscriptions?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
