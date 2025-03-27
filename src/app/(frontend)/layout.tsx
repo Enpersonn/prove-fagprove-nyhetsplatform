@@ -29,10 +29,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const payload = await getPayload({ config: payloadConfig });
   const { user } = await payload.auth({ headers });
   const isAdmin = user?.isAdmin;
+  const isAuthorized = !!user;
   return (
     <html lang="en">
       <body className={`${kantumruyPro.variable} ${anton.variable} font-sans`}>
-        <ClientProvider isAdmin={isAdmin}>{props.children}</ClientProvider>
+        <ClientProvider isAdmin={isAdmin} isAuthorized={isAuthorized}>
+          {props.children}
+        </ClientProvider>
       </body>
     </html>
   );
