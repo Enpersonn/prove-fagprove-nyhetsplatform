@@ -40,5 +40,10 @@ export default async function NewsPage({
         : null
       : article.docs[0].content,
   };
-  return <ArticleView article={articleData} />;
+  return (
+    <ArticleView
+      article={articleData}
+      hasActiveSubscription={!!hasActiveSubscription}
+    />
+  );
 }
