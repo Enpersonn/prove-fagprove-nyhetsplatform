@@ -9,7 +9,7 @@ const SubscriptionSection = ({
 }: {
   activeSubscription: Subscription;
 }) => {
-  if (!activeSubscription)
+  if (!activeSubscription || !activeSubscription.isActive)
     return (
       <Card className="w-full h-[200px]">
         <CardHeader className="h-full w-full flex items-center justify-center">
