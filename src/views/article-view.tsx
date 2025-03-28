@@ -26,7 +26,7 @@ export default async function ArticleView({
                 alt={(article.mainImage as Media).alt ?? ""}
                 width={930}
                 height={620}
-                className="object-cover"
+                className="w-full aspect-video object-cover"
               />
             </div>
           )}

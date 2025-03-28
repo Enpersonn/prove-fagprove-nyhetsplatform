@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import ContentWrapper from "@/wrapper/content-wrapper";
 import Link from "next/link";

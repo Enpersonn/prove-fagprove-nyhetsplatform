@@ -17,7 +17,6 @@ import { Card, CardFooter } from "@/components/ui/card";
 import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/dist/client/link";
-import { useRouter } from "next/navigation";
 export const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
@@ -25,7 +24,6 @@ export const signupSchema = z.object({
 });
 
 export default function SignupPage() {
-  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(signupSchema),
     defaultValues: {

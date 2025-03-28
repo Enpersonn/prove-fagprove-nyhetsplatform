@@ -1,7 +1,14 @@
+import { adminsAndUser } from "@/access/adminAndUser";
 import type { CollectionConfig } from "payload";
 
 export const Subscription: CollectionConfig = {
   slug: "subscription",
+  access: {
+    read: adminsAndUser,
+    create: adminsAndUser,
+    update: adminsAndUser,
+    delete: ({ req }) => !!req.user?.isAdmin,
+  },
   hooks: {
     beforeRead: [
       ({ doc }) => {

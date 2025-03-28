@@ -15,9 +15,8 @@ export default async function NewsPage({
   const payloadConfig = await config;
   const payload = await getPayload({ config: payloadConfig });
   const { user } = await payload.auth({ headers });
-  const hasActiveSubscription = user?.subscriptions?.some(
-    (subscription) => (subscription as Subscription).isActive
-  );
+  const userSubscription = user?.subscription?.docs?.[0] as Subscription;
+  const hasActiveSubscription = userSubscription?.isActive;
   const article = await payload.find({
     collection: "article",
     where: {

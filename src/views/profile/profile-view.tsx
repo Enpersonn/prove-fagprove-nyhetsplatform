@@ -1,11 +1,11 @@
 import SignOutButton from "@/components/profile/sign-out-button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import SubscriptionSection from "@/components/profile/subscription-section";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Subscription, User } from "@/payload-types";
 import ContentWrapper from "@/wrapper/content-wrapper";
+
 export default function ProfileView({ user }: { user: User }) {
-  const activeSubscription = user.subscriptions?.find(
-    (x) => (x as Subscription).isActive
-  );
+  const activeSubscription = user.subscription?.docs?.[0] as Subscription;
 
   return (
     <ContentWrapper>
@@ -18,18 +18,7 @@ export default function ProfileView({ user }: { user: User }) {
             </div>
           </CardHeader>
         </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Ditt abonnement</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {activeSubscription ? (
-              <p>Du har et aktivt abonnement</p>
-            ) : (
-              <p>Du har ingen aktive abonnementer</p>
-            )}
-          </CardContent>
-        </Card>
+        <SubscriptionSection activeSubscription={activeSubscription} />
       </div>
     </ContentWrapper>
   );

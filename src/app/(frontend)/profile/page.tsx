@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import { headers as getHeaders } from "next/headers";
-import ProfileView from "@/views/profile-view";
+import ProfileView from "@/views/profile/profile-view";
 import { notFound } from "next/navigation";
 export default async function ProfilPage() {
   const headers = await getHeaders();

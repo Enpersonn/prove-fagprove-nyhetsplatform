@@ -1,24 +1,33 @@
 import ContentWrapper from "@/wrapper/content-wrapper";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Footer = () => {
   return (
-    <footer className=" h-80 border border-t py-8">
+    <footer className=" border border-t ">
       <ContentWrapper>
-        <div className="grid grid-cols-3 justify-between items-center gap-8 h-full">
-          <div className="flex h-full flex-col justify-between ">
-            <div className="font-anton text-2xl">
-              <Link href="/">1984 NEWS</Link>
+        <div className="py-8 ">
+          <div className="flex h-full justify-between items-center gap-8">
+            <div className="flex h-full flex-col justify-between">
+              <div className="font-anton text-2xl h-full">
+                <Link href="/">1984 NEWS</Link>
+              </div>
+              <p className="text-sm ">
+                &copy; {new Date().getFullYear()} 1984 NEWS. All rights
+                reserved.
+              </p>
             </div>
-            <p className="text-sm text-center">
-              &copy; {new Date().getFullYear()} 1984 NEWS. All rights reserved.
-            </p>
-          </div>
-          <div className="flex flex-col justify-center gap-4 text-sm text-muted-foreground">
-            <Link href="/">Om oss</Link>
-            <Link href="/">Kontakt</Link>
-            <Link href="/">Personvern</Link>
-            <Link href="/">Om oss</Link>
+            <div className="flex justify-center gap-4 text-sm text-muted-foreground">
+              <Button variant="link" asChild className="items-start">
+                <Link href="/">Om oss</Link>
+              </Button>
+              <Button variant="link" asChild className="items-start">
+                <Link href="/">Kontakt</Link>
+              </Button>
+              <Button variant="link" asChild className="text-left">
+                <Link href="/">Personvern</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </ContentWrapper>

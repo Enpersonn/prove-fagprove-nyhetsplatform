@@ -47,10 +47,10 @@ export const Users: CollectionConfig = {
       defaultValue: false,
     },
     {
-      name: "subscriptions",
-      type: "relationship",
-      relationTo: "subscription",
-      hasMany: true,
+      name: "subscription",
+      type: "join",
+      collection: "subscription",
+      on: "email",
     },
   ],
 };

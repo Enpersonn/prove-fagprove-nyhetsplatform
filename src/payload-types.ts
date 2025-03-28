@@ -75,7 +75,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    users: {
+      subscription: 'subscription';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -127,7 +131,11 @@ export interface User {
   lastName?: string | null;
   displayName?: string | null;
   isAdmin?: boolean | null;
-  subscriptions?: (number | Subscription)[] | null;
+  subscription?: {
+    docs?: (number | Subscription)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -290,7 +298,7 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   displayName?: T;
   isAdmin?: T;
-  subscriptions?: T;
+  subscription?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
