@@ -10,12 +10,17 @@ import ContentWrapper from "@/wrapper/content-wrapper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export const newSubscriptionSchema = z
   .object({
-    acceptTerms: z.boolean(),
-    acceptPrivacy: z.boolean(),
+    acceptTerms: z.boolean().refine((val) => val, {
+      message: "Du må godta betalingsbetingelser",
+    }),
+    acceptPrivacy: z.boolean().refine((val) => val, {
+      message: "Du må godta personvern",
+    }),
   })
   .and(paymentFormSchema);
 
@@ -38,29 +43,34 @@ export default function NewSubscribtionView({ user }: { user: User }) {
   });
 
   const handleSubmit = async () => {
-    try {
-      if (userSubscription) {
-        await axios.patch(`/api/subscription/${userSubscription.id}`, {
-          isActive: true,
-        });
-      } else {
-        const payload: Partial<Subscription> = {
-          email: user,
-          isActive: true,
-          activatedAt: new Date().toISOString(),
-          nextPaymentDate: new Date(
-            new Date().setMonth(new Date().getMonth() + 1)
-          ).toISOString(),
-          expiresAt: new Date(
-            new Date().setMonth(new Date().getMonth() + 1)
-          ).toISOString(),
-        };
-        await axios.post("/api/subscription", payload);
+    toast.promise(
+      (async () => {
+        if (userSubscription) {
+          await axios.patch(`/api/subscription/${userSubscription.id}`, {
+            isActive: true,
+          });
+        } else {
+          const payload: Partial<Subscription> = {
+            email: user,
+            isActive: true,
+            activatedAt: new Date().toISOString(),
+            nextPaymentDate: new Date(
+              new Date().setMonth(new Date().getMonth() + 1)
+            ).toISOString(),
+            expiresAt: new Date(
+              new Date().setMonth(new Date().getMonth() + 1)
+            ).toISOString(),
+          };
+          await axios.post("/api/subscription", payload);
+        }
+        window.location.href = "/profile/subscription";
+      })(),
+      {
+        loading: "Oppretter abonnement...",
+        success: "Abonnement opprettet!",
+        error: "Noe gikk galt",
       }
-      window.location.href = "/profile/subscription";
-    } catch (error) {
-      console.error(error);
-    }
+    );
   };
   return (
     <ContentWrapper>

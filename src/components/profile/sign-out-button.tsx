@@ -8,7 +8,11 @@ const SignOutButton = () => {
     await axios.post("/api/users/logout");
     window.location.href = "/";
   };
-  return <Button onClick={handleLogout}>Logg ut</Button>;
+  return (
+    <Button onClick={handleLogout} variant={"outline"}>
+      Logg ut
+    </Button>
+  );
 };
 
 export default SignOutButton;

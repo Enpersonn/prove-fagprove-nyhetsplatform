@@ -4,10 +4,10 @@ import type { CollectionConfig } from "payload";
 export const Subscription: CollectionConfig = {
   slug: "subscription",
   access: {
-    read: adminsAndUser,
+    read: () => true,
     create: adminsAndUser,
     update: adminsAndUser,
-    delete: ({ req }) => !!req.user?.isAdmin,
+    delete: adminsAndUser,
   },
   hooks: {
     beforeRead: [

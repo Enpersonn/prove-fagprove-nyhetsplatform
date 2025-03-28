@@ -4,17 +4,19 @@ import type { Subscription } from "@/payload-types";
 import ContentWrapper from "@/wrapper/content-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 export default function SubscribtionView({
   userSubscription,
 }: {
   userSubscription: Subscription;
 }) {
+  const router = useRouter();
   const handleCancelSubscription = async () => {
     try {
       await axios.patch(`/api/subscription/${userSubscription.id}`, {
         isActive: false,
       });
+      router.refresh();
     } catch (error) {
       console.error(error);
     }

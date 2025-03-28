@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="font-anton text-2xl h-full">
                 <Link href="/">1984 NEWS</Link>
               </div>
-              <p className="text-sm ">
+              <p className="text-sm hidden md:block ">
                 &copy; {new Date().getFullYear()} 1984 NEWS. All rights
                 reserved.
               </p>
@@ -29,6 +29,9 @@ const Footer = () => {
               </Button>
             </div>
           </div>
+          <p className="text-sm  md:hidden ">
+            &copy; {new Date().getFullYear()} 1984 NEWS. All rights reserved.
+          </p>
         </div>
       </ContentWrapper>
     </footer>

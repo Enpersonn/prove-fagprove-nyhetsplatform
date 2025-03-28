@@ -10,7 +10,7 @@ export const Users: CollectionConfig = {
     create: () => true,
     read: adminsAndUser,
     update: adminsAndUser,
-    delete: ({ req }) => !!req.user?.isAdmin,
+    delete: adminsAndUser,
     admin: ({ req }) => !!req.user?.isAdmin,
   },
   auth: {
@@ -19,7 +19,7 @@ export const Users: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ data }) => {
-        if (!data.displayName) {
+        if (!data.displayName && data.firstName && data.lastName) {
           data.displayName = `${data.firstName} ${data.lastName}`;
         }
       },

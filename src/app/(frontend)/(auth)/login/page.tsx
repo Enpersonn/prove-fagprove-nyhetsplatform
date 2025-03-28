@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
 import axios from "axios";
 import Link from "next/link";
+import { toast } from "sonner";
 export const loginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
@@ -30,12 +31,16 @@ export default function LoginPage() {
   });
 
   const handleLogin = async () => {
-    try {
-      await axios.post("/api/users/login", form.getValues());
-      window.location.href = "/profile";
-    } catch (error) {
-      console.log(error);
-    }
+    toast.promise(
+      axios.post("/api/users/login", form.getValues()).then(() => {
+        window.location.href = "/profile";
+      }),
+      {
+        loading: "Logg inn...",
+        success: "Logget inn",
+        error: "Feil ved logg inn",
+      }
+    );
   };
   return (
     <ContentWrapper>
