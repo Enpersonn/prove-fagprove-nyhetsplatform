@@ -25,11 +25,11 @@ export default function DangerZone({ user }: { user: User }) {
   const handleDeleteAccount = async () => {
     toast.promise(
       async () => {
-        await axios.delete(`/api/users/${user.id}`);
         if (user.subscription?.docs?.[0]) {
           const subscription = user.subscription?.docs?.[0] as Subscription;
           await axios.delete(`/api/subscription/${subscription.id}`);
         }
+        await axios.delete(`/api/users/${user.id}`);
         router.refresh();
       },
       {
