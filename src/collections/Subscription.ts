@@ -1,4 +1,7 @@
-import { adminsAndUser } from "@/access/adminAndUser";
+import {
+  adminsAndUser,
+  adminAndUserOwnsSubscription,
+} from "@/access/adminAndUser";
 import type { CollectionConfig } from "payload";
 
 export const Subscription: CollectionConfig = {
@@ -6,8 +9,8 @@ export const Subscription: CollectionConfig = {
   access: {
     read: () => true,
     create: adminsAndUser,
-    update: adminsAndUser,
-    delete: adminsAndUser,
+    update: adminAndUserOwnsSubscription,
+    delete: adminAndUserOwnsSubscription,
   },
   hooks: {
     beforeRead: [

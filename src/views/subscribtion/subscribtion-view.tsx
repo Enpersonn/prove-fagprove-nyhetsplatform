@@ -5,6 +5,7 @@ import ContentWrapper from "@/wrapper/content-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 export default function SubscribtionView({
   userSubscription,
 }: {
@@ -12,14 +13,22 @@ export default function SubscribtionView({
 }) {
   const router = useRouter();
   const handleCancelSubscription = async () => {
-    try {
-      await axios.patch(`/api/subscription/${userSubscription.id}`, {
-        isActive: false,
-      });
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-    }
+    toast.promise(
+      (async () => {
+        await axios.patch(`/api/subscription/${userSubscription.id}`, {
+          isActive: false,
+          nextPaymentDate: null,
+          expiresAt: null,
+          activatedAt: null,
+        });
+        router.refresh();
+      })(),
+      {
+        loading: "Avslutter abonnement...",
+        success: "Abonnement avsluttet!",
+        error: "Noe gikk galt",
+      }
+    );
   };
   return (
     <ContentWrapper>

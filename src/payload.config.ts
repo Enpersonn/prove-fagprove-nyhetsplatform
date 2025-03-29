@@ -6,7 +6,6 @@ import path from "node:path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { uploadthingStorage } from "@payloadcms/storage-uploadthing";

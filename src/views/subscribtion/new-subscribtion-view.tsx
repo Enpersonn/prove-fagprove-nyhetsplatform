@@ -34,6 +34,13 @@ export default function NewSubscribtionView({ user }: { user: User }) {
         if (userSubscription) {
           await axios.patch(`/api/subscription/${userSubscription.id}`, {
             isActive: true,
+            activatedAt: new Date().toISOString(),
+            nextPaymentDate: new Date(
+              new Date().setMonth(new Date().getMonth() + 1)
+            ).toISOString(),
+            expiresAt: new Date(
+              new Date().setMonth(new Date().getMonth() + 1)
+            ).toISOString(),
           });
         } else {
           const payload: Partial<Subscription> = {
