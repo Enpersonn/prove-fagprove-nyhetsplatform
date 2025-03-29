@@ -6,15 +6,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
-
-export const invoiceFormSchema = z.object({
-  invoiceName: z.string().min(1),
-  invoiceAddress: z.string().min(1),
-  invoiceZip: z.string().min(4).max(4),
-  invoiceCity: z.string().min(1),
-  invoiceCountry: z.string().min(1),
-});
 
 const InvoiceForm = () => {
   const form = useFormContext();

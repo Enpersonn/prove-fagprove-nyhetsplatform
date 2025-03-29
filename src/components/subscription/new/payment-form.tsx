@@ -1,20 +1,8 @@
-import { z } from "zod";
-import InvoiceForm, { invoiceFormSchema } from "./invoice-form";
-import CardForm, { cardFormSchema } from "./card-form";
+import InvoiceForm from "./invoice-form";
+import CardForm from "./card-form";
 import { useFormContext } from "react-hook-form";
 import PaymentRadio from "./payment-radio";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
-
-export const paymentFormSchema = z.discriminatedUnion("paymentMethod", [
-  z.object({
-    paymentMethod: z.literal("card"),
-    cardDetails: cardFormSchema,
-  }),
-  z.object({
-    paymentMethod: z.literal("invoice"),
-    invoiceDetails: invoiceFormSchema,
-  }),
-]);
 
 const PaymentForm = () => {
   const form = useFormContext();

@@ -1,6 +1,5 @@
 "use client";
 import ContentWrapper from "@/wrapper/content-wrapper";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -17,14 +16,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/dist/client/link";
-export const signupSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  displayName: z.string(),
-  email: z.string().email(),
-  password: z.string().min(8),
-  confirmPassword: z.string().min(8),
-});
+import { signupSchema } from "@/schemas/signup-schema";
 
 export default function SignupPage() {
   const form = useForm({

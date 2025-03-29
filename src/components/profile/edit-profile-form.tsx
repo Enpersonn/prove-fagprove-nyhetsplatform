@@ -8,7 +8,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
@@ -17,29 +16,21 @@ import { Card, CardTitle, CardHeader, CardContent } from "../ui/card";
 import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-interface EditProfileFormProps {
-  user: User;
-}
+import { editProfileSchema } from "@/schemas/edit-profile-schema";
 
-const formSchema = z.object({
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
-  displayName: z.string().min(1),
-});
-
-const EditProfileForm = ({ user }: EditProfileFormProps) => {
+const EditProfileForm = ({ user }: { user: User }) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm({
+    resolver: zodResolver(editProfileSchema),
     defaultValues: {
       firstName: user.firstName ?? "",
       lastName: user.lastName ?? "",
       displayName: user.displayName ?? "",
     },
   });
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async () => {
     toast.promise(
-      axios.patch(`/api/users/${user.id}`, data).then(() => {
+      axios.patch(`/api/users/${user.id}`, form.getValues()).then(() => {
         toast.success("Profil oppdatert");
         router.refresh();
       }),

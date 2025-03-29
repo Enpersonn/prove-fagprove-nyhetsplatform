@@ -1,8 +1,6 @@
 "use client";
 import AcceptFormTermsSection from "@/components/subscription/new/accept-form-terms-section";
-import PaymentForm, {
-  paymentFormSchema,
-} from "@/components/subscription/new/payment-form";
+import PaymentForm from "@/components/subscription/new/payment-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import type { Subscription, User } from "@/payload-types";
@@ -11,19 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
-
-export const newSubscriptionSchema = z
-  .object({
-    acceptTerms: z.boolean().refine((val) => val, {
-      message: "Du må godta betalingsbetingelser",
-    }),
-    acceptPrivacy: z.boolean().refine((val) => val, {
-      message: "Du må godta personvern",
-    }),
-  })
-  .and(paymentFormSchema);
-
+import { newSubscriptionSchema } from "@/schemas/new-subscription-schema";
 export default function NewSubscribtionView({ user }: { user: User }) {
   const userSubscription = user.subscription?.docs?.[0] as Subscription;
 

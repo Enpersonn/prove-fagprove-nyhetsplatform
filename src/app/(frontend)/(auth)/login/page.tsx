@@ -17,16 +17,14 @@ import { Card, CardFooter } from "@/components/ui/card";
 import axios from "axios";
 import Link from "next/link";
 import { toast } from "sonner";
-export const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+import { loginSchema } from "@/schemas/login-schema";
 
 export default function LoginPage() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
+      password: "",
     },
   });
 
