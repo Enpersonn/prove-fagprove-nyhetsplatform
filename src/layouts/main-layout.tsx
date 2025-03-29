@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/footer";
-import AdminButton from "./admin-button";
-import TopNavigationBar from "./top-navigation-bar";
+import AdminButton from "../components/layout/admin-button";
+import TopNavigationBar from "../components/layout/top-navigation-bar";
 export default function MainLayout({
   isAdmin,
   isAuthorized,
