@@ -54,7 +54,9 @@ export default function DangerZone({ user }: { user: User }) {
       <CardFooter>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="destructive">Slett konto</Button>
+            <Button aria-label="Slett konto" variant="destructive">
+              Slett konto
+            </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -65,7 +67,11 @@ export default function DangerZone({ user }: { user: User }) {
               handlingen kan som sagt ikke reverseres.
             </DialogDescription>
             <DialogFooter>
-              <Button variant="destructive" onClick={handleDeleteAccount}>
+              <Button
+                aria-label="Slett konto"
+                variant="destructive"
+                onClick={handleDeleteAccount}
+              >
                 Slett konto
               </Button>
             </DialogFooter>

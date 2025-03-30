@@ -23,9 +23,13 @@ const AcceptFormTermsSection = () => {
                 onCheckedChange={field.onChange}
               />
             </FormControl>
-            <FormLabel>
+            <FormLabel className="flex items-center gap-2">
               Jeg godtar
-              <Link href="/betalingsbetingelser" className="underline">
+              <Link
+                aria-label="Betalingsbetingelser"
+                href="/betalingsbetingelser"
+                className="underline"
+              >
                 betalingsbetingelser
               </Link>
             </FormLabel>
@@ -43,9 +47,13 @@ const AcceptFormTermsSection = () => {
                 onCheckedChange={field.onChange}
               />
             </FormControl>
-            <FormLabel>
+            <FormLabel className="flex items-center gap-2">
               Jeg godtar
-              <Link href="/personvern" className="underline">
+              <Link
+                aria-label="Personvern"
+                href="/personvern"
+                className="underline"
+              >
                 personvern
               </Link>
             </FormLabel>

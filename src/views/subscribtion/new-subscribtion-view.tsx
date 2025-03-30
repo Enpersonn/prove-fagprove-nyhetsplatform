@@ -77,7 +77,11 @@ export default function NewSubscribtionView({ user }: { user: User }) {
             <PaymentForm />
             <AcceptFormTermsSection />
             <div className="flex justify-end">
-              <Button type="submit" disabled={!form.formState.isValid}>
+              <Button
+                aria-label="Opprett abonnement"
+                type="submit"
+                disabled={!form.formState.isValid}
+              >
                 Opprett abonnement
               </Button>
             </div>

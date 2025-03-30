@@ -36,7 +36,10 @@ export default function SubscribtionView({
         <CardHeader>
           <div className="w-full flex justify-between items-center">
             <CardTitle>Ditt abonnement</CardTitle>
-            <Button onClick={handleCancelSubscription}>
+            <Button
+              aria-label="Avslutt abonnement"
+              onClick={handleCancelSubscription}
+            >
               Avslutt abonnement
             </Button>
           </div>

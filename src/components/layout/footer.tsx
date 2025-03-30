@@ -10,7 +10,9 @@ const Footer = () => {
           <div className="flex h-full justify-between items-center gap-8">
             <div className="flex h-full flex-col justify-between">
               <div className="font-anton text-2xl h-full">
-                <Link href="/">1984 NEWS</Link>
+                <Link aria-label="Hjem" href="/">
+                  1984 NEWS
+                </Link>
               </div>
               <p className="text-sm hidden md:block ">
                 &copy; {new Date().getFullYear()} 1984 NEWS. All rights
@@ -19,13 +21,19 @@ const Footer = () => {
             </div>
             <div className="flex justify-center gap-4 text-sm text-muted-foreground">
               <Button variant="link" asChild className="items-start">
-                <Link href="/">Om oss</Link>
+                <Link aria-label="Om oss" href="/">
+                  Om oss
+                </Link>
               </Button>
               <Button variant="link" asChild className="items-start">
-                <Link href="/">Kontakt</Link>
+                <Link aria-label="Kontakt" href="/">
+                  Kontakt
+                </Link>
               </Button>
               <Button variant="link" asChild className="text-left">
-                <Link href="/">Personvern</Link>
+                <Link aria-label="Personvern" href="/">
+                  Personvern
+                </Link>
               </Button>
             </div>
           </div>

@@ -10,6 +10,7 @@ export default function FrontPageView({ articles }: { articles: Article[] }) {
         {articles.map((article) => (
           <Link
             key={article.id}
+            aria-label={`Les mer om ${article.title}`}
             href={`/nyhet/${article.slug}`}
             className=" border hover:underline relative overflow-hidden"
           >

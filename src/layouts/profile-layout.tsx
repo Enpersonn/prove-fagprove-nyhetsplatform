@@ -40,10 +40,14 @@ export default async function ProfileLayoutView({
             <CardContent>
               <div className="flex gap-2 w-full justify-center">
                 <Button asChild>
-                  <Link href="/">Gå tilbake</Link>
+                  <Link aria-label="Gå tilbake" href="/">
+                    Gå tilbake
+                  </Link>
                 </Button>
                 <Button asChild>
-                  <Link href="/login">Logg inn</Link>
+                  <Link aria-label="Logg inn" href="/login">
+                    Logg inn
+                  </Link>
                 </Button>
               </div>
             </CardContent>
@@ -52,7 +56,9 @@ export default async function ProfileLayoutView({
                 Har du ikke en konto?
               </p>
               <Button asChild variant="link">
-                <Link href="/signup">Registrer deg</Link>
+                <Link aria-label="Registrer deg" href="/signup">
+                  Registrer deg
+                </Link>
               </Button>
             </CardFooter>
           </Card>

@@ -13,7 +13,7 @@ const SubscriptionSection = ({
     return (
       <Card className="w-full h-[200px]">
         <CardHeader className="h-full w-full flex items-center justify-center">
-          <Button asChild>
+          <Button aria-label="Opprett abonnement" asChild>
             <Link href="/profile/subscription/new">
               <PlusIcon className="size-4" />
               Opprett abonnement
@@ -28,7 +28,7 @@ const SubscriptionSection = ({
       <CardHeader>
         <div className="w-full flex justify-between items-center">
           <CardTitle>Ditt abonnement</CardTitle>
-          <Button asChild>
+          <Button aria-label="Administrer" asChild>
             <Link href="/profile/subscription/">Administrer</Link>
           </Button>
         </div>

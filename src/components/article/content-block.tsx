@@ -16,11 +16,17 @@ const ContentBlock = () => {
           </p>
         </div>
         <div className=" flex gap-2 w-full justify-center items-center">
-          <Button onClick={() => router.back()} variant="outline">
+          <Button
+            aria-label="Gå tilbake"
+            onClick={() => router.back()}
+            variant="outline"
+          >
             Gå tilbake
           </Button>
           <Button asChild>
-            <Link href="/profile/subscription/new">Abonner</Link>
+            <Link aria-label="Abonner" href="/profile/subscription/new">
+              Abonner
+            </Link>
           </Button>
         </div>
       </Card>

@@ -92,7 +92,9 @@ const EditProfileForm = ({ user }: { user: User }) => {
               />
             </div>
             <div className="flex justify-end">
-              <Button type="submit">Lagre</Button>
+              <Button aria-label="Lagre" type="submit">
+                Lagre
+              </Button>
             </div>
           </form>
         </Form>

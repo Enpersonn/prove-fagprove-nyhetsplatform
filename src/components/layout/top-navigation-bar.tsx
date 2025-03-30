@@ -20,10 +20,13 @@ const TopNavigationBar = ({
         <ContentWrapper>
           <div className="flex w-full justify-between items-center gap-4">
             <div className="font-anton text-2xl">
-              <Link href="/">1984 NEWS</Link>
+              <Link aria-label="Hjem" href="/">
+                1984 NEWS
+              </Link>
             </div>
             <div className="flex items-center gap-4">
               <Button
+                aria-label="Bytt tema"
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 variant="ghost"
                 size="icon"
@@ -34,11 +37,15 @@ const TopNavigationBar = ({
                   <SunIcon className="size-4" />
                 )}
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" asChild>
                 {isAuthorized ? (
-                  <Link href="/profile">Min Profil</Link>
+                  <Link aria-label="Min Profil" href="/profile">
+                    Min Profil
+                  </Link>
                 ) : (
-                  <Link href="/login">Logg inn</Link>
+                  <Link aria-label="Logg inn" href="/login">
+                    Logg inn
+                  </Link>
                 )}
               </Button>
             </div>

@@ -9,7 +9,7 @@ const SignOutButton = () => {
     window.location.href = "/";
   };
   return (
-    <Button onClick={handleLogout} variant={"outline"}>
+    <Button aria-label="Logg ut" onClick={handleLogout} variant={"outline"}>
       Logg ut
     </Button>
   );

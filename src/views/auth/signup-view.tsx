@@ -142,7 +142,9 @@ export default function SignupView() {
                 />
               </div>
               <div className="flex items-center justify-end pt-4">
-                <Button type="submit">Signup</Button>
+                <Button aria-label="Registrer deg" type="submit">
+                  Signup
+                </Button>
               </div>
             </form>
           </Form>

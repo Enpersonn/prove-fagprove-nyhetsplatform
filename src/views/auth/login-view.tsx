@@ -72,7 +72,9 @@ export default function LoginView() {
                 )}
               />
               <div className="flex items-center justify-end pt-4">
-                <Button type="submit">Login</Button>
+                <Button aria-label="Logg inn" type="submit">
+                  Login
+                </Button>
               </div>
             </form>
           </Form>
