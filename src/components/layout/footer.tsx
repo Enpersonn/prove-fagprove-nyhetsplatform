@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className=" border border-t ">
       <ContentWrapper>
         <div className="py-8 ">
-          <div className="flex h-full justify-between items-center gap-8">
+          <div className="flex h-full justify-between items-center gap-4 md:gap-8">
             <div className="flex h-full flex-col justify-between">
               <div className="font-anton text-2xl h-full">
                 <Link aria-label="Hjem" href="/">
@@ -19,7 +19,7 @@ const Footer = () => {
                 reserved.
               </p>
             </div>
-            <div className="flex justify-center gap-4 text-sm text-muted-foreground">
+            <div className="flex justify-center md:gap-4 text-sm text-muted-foreground">
               <Button variant="link" asChild className="items-start">
                 <Link aria-label="Om oss" href="/">
                   Om oss
