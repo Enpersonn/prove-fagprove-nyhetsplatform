@@ -24,6 +24,7 @@ export default async function ArticleView({
               <Image
                 src={(article.mainImage as Media).url ?? ""}
                 alt={(article.mainImage as Media).alt ?? ""}
+                loading="lazy"
                 width={930}
                 height={620}
                 className="w-full aspect-video object-cover"

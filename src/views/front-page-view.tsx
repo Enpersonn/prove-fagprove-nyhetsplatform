@@ -22,6 +22,7 @@ export default function FrontPageView({ articles }: { articles: Article[] }) {
                   width={930}
                   height={620}
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
             )}
