@@ -20,7 +20,7 @@ const ContentBlock = () => {
             Gå tilbake
           </Button>
           <Button asChild>
-            <Link href="/profile/subscription/new">Abboner</Link>
+            <Link href="/profile/subscription/new">Abonner</Link>
           </Button>
         </div>
       </Card>

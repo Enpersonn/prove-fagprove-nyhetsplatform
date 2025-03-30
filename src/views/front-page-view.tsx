@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function FrontPageView({ articles }: { articles: Article[] }) {
   return (
     <ContentWrapper>
-      <div className="grid md:grid-cols-3 gap-4 pb-20">
+      <div className="grid md:grid-cols-3 gap-4 ">
         {articles.map((article) => (
           <Link
             key={article.id}
