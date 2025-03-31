@@ -4,6 +4,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
 import { useFormContext } from "react-hook-form";
@@ -33,6 +34,7 @@ const AcceptFormTermsSection = () => {
                 betalingsbetingelser
               </Link>
             </FormLabel>
+            <FormMessage />
           </FormItem>
         )}
       />
@@ -57,6 +59,7 @@ const AcceptFormTermsSection = () => {
                 personvern
               </Link>
             </FormLabel>
+            <FormMessage />
           </FormItem>
         )}
       />

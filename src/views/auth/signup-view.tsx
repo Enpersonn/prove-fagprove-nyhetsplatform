@@ -17,6 +17,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/dist/client/link";
 import { signupSchema } from "@/schemas/signup-schema";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function SignupView() {
   const form = useForm({
@@ -28,6 +29,7 @@ export default function SignupView() {
       email: "",
       password: "",
       confirmPassword: "",
+      allowDataSaving: false,
     },
   });
 
@@ -140,9 +142,31 @@ export default function SignupView() {
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="allowDataSaving"
+                  render={({ field }) => (
+                    <FormItem className="flex items-center gap-2">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormLabel className="text-sm text-muted-foreground">
+                        Jeg godtar at data jeg gir blir lagret på serveren
+                      </FormLabel>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
               <div className="flex items-center justify-end pt-4">
-                <Button aria-label="Registrer deg" type="submit">
+                <Button
+                  aria-label="Registrer deg"
+                  type="submit"
+                  disabled={!form.getValues().allowDataSaving}
+                >
                   Signup
                 </Button>
               </div>
