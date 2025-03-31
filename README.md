@@ -54,7 +54,7 @@ src/
 ├── app/           # Next.js app router
 ├── components/    # Gjenbrukbare UI komponenter
 ├── collections/   # Payload CMS collections
-├── schemas/       # Payload CMS schemas
+├── schemas/       # Zod schemas
 ├── layouts/       # Layout komponenter
 ├── views/         # Side-spesifikke komponenter
 ├── hooks/         # Custom React hooks
@@ -73,10 +73,5 @@ src/
 ## 🔒 Sikkerhet
 
 Prosjektet implementerer sikkerhet gjennom:
-
 - Form validering med Zod
 - Sikker autentisering via Payload CMS
-
-## 📝 Lisens
-
-MIT
